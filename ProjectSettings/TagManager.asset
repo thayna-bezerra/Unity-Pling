@@ -11,6 +11,7 @@ TagManager:
   - ColetavelA
   - ColetavelB
   - Moeda
+  - Chefao
   layers:
   - Default
   - TransparentFX
