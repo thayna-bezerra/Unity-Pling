@@ -1575,7 +1575,7 @@ RectTransform:
   m_GameObject: {fileID: 684913821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6997779, y: 0.81641334, z: 0.8626288}
+  m_LocalScale: {x: 0.6997779, y: 0.8980547, z: 0.8626288}
   m_Children: []
   m_Father: {fileID: 1111014649}
   m_RootOrder: 7
@@ -1606,7 +1606,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.98160696, g: 0, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.9339623, g: 0.59474015, b: 0.89260834, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7372549, b: 0.9886322, a: 0.8666667}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1758,6 +1758,7 @@ GameObject:
   - component: {fileID: 802757133}
   - component: {fileID: 802757134}
   - component: {fileID: 802757135}
+  - component: {fileID: 802757136}
   m_Layer: 0
   m_Name: Chefao
   m_TagString: Chefao
@@ -1825,7 +1826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802757130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: 1.95, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 254092726}
@@ -1853,6 +1854,7 @@ MonoBehaviour:
   delaySpawn: 1
   minDelay: 1
   maxDelay: 5
+  rb2d: {fileID: 0}
 --- !u!114 &802757134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,6 +1872,7 @@ MonoBehaviour:
   barraDeVida: {fileID: 1701121245}
   explosao: {fileID: 6155577074468066373, guid: a9ffba3671378bc428aad3cc06a2e6a2,
     type: 3}
+  gc: {fileID: 0}
 --- !u!61 &802757135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1896,6 +1899,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.3, y: 7.01}
   m_EdgeRadius: 0
+--- !u!50 &802757136
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802757130}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 3.3437705
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &820293305
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3228,7 @@ GameObject:
   - component: {fileID: 1586800096}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3231,6 +3255,7 @@ MonoBehaviour:
   panelWins: {fileID: 834227251}
   panelGameOver: {fileID: 970519604}
   VidaPlayer: 3
+  danoPlayer: 10
   VidasHUD:
   - {fileID: 2097064626}
   - {fileID: 1678213426}

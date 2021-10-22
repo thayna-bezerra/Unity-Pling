@@ -11,9 +11,12 @@ public class ChefaoStatus : MonoBehaviour
 
     public Slider barraDeVida;
     public GameObject explosao;
+    public GameController gc;
+
 
     void Start()
     {
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         currentLife = maxLife;
         barraDeVida.maxValue = maxLife;
     }
@@ -28,8 +31,7 @@ public class ChefaoStatus : MonoBehaviour
         if (collision.gameObject.CompareTag("Tiro"))
         {
             Destroy(collision.gameObject);
-            currentLife -= 10;
-
+            currentLife -= gc.danoPlayer;
             Instantiate(explosao, collision.transform.position, Quaternion.identity);
         }
     }

@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     
     [Header("Atributos Player")]
     public int VidaPlayer = 3;
+    public int danoPlayer = 10;
     public GameObject[] VidasHUD = new GameObject[3];
      
     //public int Pontos = 0;
@@ -36,9 +37,17 @@ public class GameController : MonoBehaviour
   
     public PlayerMove player;
 
+    ChefaoStatus chefaoStatus; // identificar quanto de vida tem o chefão
 
     private void Start()
     {
+        //acessando 
+        if(SceneManager.GetActiveScene().name == "FaseChefao")
+        {
+            chefaoStatus = GameObject.FindGameObjectWithTag("Chefao").GetComponent<ChefaoStatus>();
+        }
+
+
         //carrega o valor do objetivo Max de acordo com a fase escolhida
         coletavelAMAX = PlayerPrefs.GetInt("objetivoMaxMaca");
         coletavelBMAX = PlayerPrefs.GetInt("objetivoMaxLaranja");
@@ -57,24 +66,21 @@ public class GameController : MonoBehaviour
             //os spawns so acontecem quando não for a tela do chefão
             if (SceneManager.GetActiveScene().name != "FaseChefao")
             {
-                SpawnInimigo();
+                SpawnAll();
+            }
 
-                //spawns caso já tenha ou não coletado os objetivos
-                if (coletavelA < coletavelAMAX)
+            else if (SceneManager.GetActiveScene().name == "FaseChefao")
+            {
+                if(chefaoStatus.currentLife <= 0)
                 {
-                    SpawnColetavelA();
+                    SpawnAll();
                 }
-                if (coletavelB < coletavelBMAX)
-                {
-                    SpawnColetavelB();
-                }
-
-                SpawnMoedaColetavel();
             }
 
             ObjetivoConcluido();
             panelGameOver.SetActive(false);
         }
+
         else
         {
             panelGameOver.SetActive(true);
@@ -96,6 +102,23 @@ public class GameController : MonoBehaviour
     }
 
     #region Spawns
+    void SpawnAll()
+    {
+        SpawnInimigo();
+
+        //spawns caso já tenha ou não coletado os objetivos
+        if (coletavelA < coletavelAMAX)
+        {
+            SpawnColetavelA();
+        }
+        if (coletavelB < coletavelBMAX)
+        {
+            SpawnColetavelB();
+        }
+
+        SpawnMoedaColetavel();
+    }
+
     void SpawnInimigo ()
     {
         delaySpawnInimigo -= Time.deltaTime;
