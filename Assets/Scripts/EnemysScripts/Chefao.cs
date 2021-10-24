@@ -18,32 +18,51 @@ public class Chefao : MonoBehaviour
     public Rigidbody2D rb2d;
     ChefaoStatus chefaoStatus;
     BoxCollider2D bc2D;
-    private float timeDead = -0.4f;
+    private float timeDead = -0.5f;
+
+    public Animator animBoss;
+
+    //var para entrada chefao
+    //public bool startChefao = true;
 
 
     private void Start()
     {
         bc2D = GetComponent<BoxCollider2D>();
-
-        //chefao sem interação com a gravidade
-        rb2d = GetComponent<Rigidbody2D>();
-        rb2d.bodyType = RigidbodyType2D.Kinematic;
-
         chefaoStatus = GetComponent<ChefaoStatus>();
+        rb2d = GetComponent<Rigidbody2D>();
 
+            //chefao sem interação com a gravidade
+            //rb2d.bodyType = RigidbodyType2D.Kinematic;
     }
 
     void Update()
     {
         if(chefaoStatus.currentLife > 0)
         {
-            HorinzontalMove();
-            SpawnTiros();
+            if(transform.position.y == 7)
+            {
+                rb2d.bodyType = RigidbodyType2D.Dynamic;
+                //rb2d.gravityScale = -0.4f;
+            }
+
+            else if (transform.position.y <= 2.26)
+            {
+                rb2d.bodyType = RigidbodyType2D.Static;
+                HorinzontalMove();
+                SpawnTiros();
+            }
+
+
         }
         else
         {
+
+            animBoss = GetComponent<Animator>();
+            animBoss.Play("deadBoss");
             //morte
             bc2D.enabled = false;
+
             rb2d.bodyType = RigidbodyType2D.Dynamic;
             rb2d.gravityScale = timeDead;
             timeDead += Time.deltaTime;
