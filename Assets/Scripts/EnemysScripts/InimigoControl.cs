@@ -50,9 +50,7 @@ public class InimigoControl : MonoBehaviour
             else if(gameObject.tag == "Inimigo")
             {
                GameController.VidaPlayer--;
-               //GameController.Pontos--; // menos 30 pontos por perder vida
-               //GameController.coletavelA = 0; 
-               //GameController.coletavelB = 0; 
+                Instantiate(particula, transform.position, Quaternion.identity);
             }
 
            Destroy(this.gameObject);

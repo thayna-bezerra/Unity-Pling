@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8175566413260603621}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7086028, w: 0.70560765}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99968463, w: 0.02511348}
   m_LocalPosition: {x: 0.8308509, y: 1.0213926, z: 0}
   m_LocalScale: {x: 0.2436, y: 0.2436, z: 0.2436}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.243}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 177.122}
 --- !u!212 &3824129844345594874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameController: {fileID: 0}
-  explosao: {fileID: 6155577074468066373, guid: a9ffba3671378bc428aad3cc06a2e6a2,
+  explosao: {fileID: 5760328420180322182, guid: ff916af92b3739647a736633650adfb3,
     type: 3}
-  particula: {fileID: 6797321911138737771, guid: 04bf4b966e300b34fa5002398c84628a,
+  particula: {fileID: 9013338021229796162, guid: 1d5b45808b78bc54cbd4e76a29330c90,
     type: 3}
   rb2d: {fileID: 0}
 --- !u!50 &-8496097001276837755
