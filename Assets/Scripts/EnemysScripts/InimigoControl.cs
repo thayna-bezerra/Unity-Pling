@@ -8,13 +8,14 @@ public class InimigoControl : MonoBehaviour
     public GameObject explosao, particula;
     
     public Rigidbody2D rb2d; //Variavel de referencia do Rb2d
-    
+
     void Start()
     {    //Acessando o componente Rb2D e realizando alteração no valor da Gravidade
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = Random.Range(0.2f,0.4f); //GRAVIDADE   //(0.4f, 1)
 
         GameController = GameObject.Find("GameController").GetComponent<GameController>();
+
     }
 
     void Update()
@@ -51,6 +52,9 @@ public class InimigoControl : MonoBehaviour
             {
                GameController.VidaPlayer--;
                 Instantiate(particula, transform.position, Quaternion.identity);
+
+                //player levar dano
+
             }
 
            Destroy(this.gameObject);

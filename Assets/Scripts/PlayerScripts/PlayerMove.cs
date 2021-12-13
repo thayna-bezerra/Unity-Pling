@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+//private AudioSource sound;
+
     [Header("Controle de movimentação/pulo")]
     public float speed = 5;
     public float jump = 5;
@@ -28,6 +30,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        //sound = GetComponent<AudioSource>();
+
         gc = GameObject.Find("GameController").GetComponent<GameController>();
         pulo = GetComponent<Rigidbody2D>();
         AnimacoesPlayer = GetComponent<Animator>();
@@ -117,6 +121,7 @@ public class PlayerMove : MonoBehaviour
         if(!IsAtk)
         {
             IsAtk = true;
+            //sound.Play();
             Instantiate(WaterBullet, SpawnPosition.position, transform.rotation);
             Invoke("SpawnTiro", 0.2f);
         }

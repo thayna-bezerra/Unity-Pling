@@ -121,7 +121,7 @@ MonoBehaviour:
   GameController: {fileID: 0}
   explosao: {fileID: 5760328420180322182, guid: ff916af92b3739647a736633650adfb3,
     type: 3}
-  particula: {fileID: 9013338021229796162, guid: 1d5b45808b78bc54cbd4e76a29330c90,
+  particula: {fileID: 450597919786873206, guid: 7a9993e6c07b4df4ba8e3d28b6b87a8f,
     type: 3}
   rb2d: {fileID: 0}
 --- !u!50 &-8496097001276837755

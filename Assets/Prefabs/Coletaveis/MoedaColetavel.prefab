@@ -168,6 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameController: {fileID: 0}
   explosao: {fileID: 955031975482673777, guid: 8e6b613e7bb4949419d5555efcf30238, type: 3}
-  particula: {fileID: 7077646842758150661, guid: 27d7ad3766e78f946b978bb5a40245d5,
+  particula: {fileID: 7536169649684981679, guid: 2ddf0572846dc524193b4c3015726510,
     type: 3}
   rb2d: {fileID: 0}

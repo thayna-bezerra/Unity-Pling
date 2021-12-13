@@ -52,9 +52,8 @@ public class Chefao : MonoBehaviour
                 HorinzontalMove();
                 SpawnTiros();
             }
-
-
         }
+
         else
         {
 
