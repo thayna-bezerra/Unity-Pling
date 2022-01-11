@@ -35,12 +35,14 @@ public class MenuInicial : MonoBehaviour
 
     public void ativarSelecaoFasel()
     {
+        SoundControl.sounds.click.Play();
         panelTelaInicial.SetActive(false);
         panelSelecaoFase.SetActive(true);
     }
 
     public void ativarPanelInicial()
     {
+        SoundControl.sounds.click.Play();
         panelTelaInicial.SetActive(true);
         panelSelecaoFase.SetActive(false);
     }

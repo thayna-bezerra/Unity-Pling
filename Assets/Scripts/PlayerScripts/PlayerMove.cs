@@ -82,6 +82,7 @@ public class PlayerMove : MonoBehaviour
             Instantiate (smoke, transform.position, transform.rotation); //spawn da fumaça quando o player sai do chão
             isJumping = true;  //esta pulando fica verdadeiro quando a tecla é pressionada
             pulo.AddForce(new Vector2 (0f, jump), ForceMode2D.Impulse); //física do pulo
+            SoundControl.sounds.somPulo.Play();
         }
     }
 
@@ -121,7 +122,7 @@ public class PlayerMove : MonoBehaviour
         if(!IsAtk)
         {
             IsAtk = true;
-            //sound.Play();
+            SoundControl.sounds.somTiro.Play();
             Instantiate(WaterBullet, SpawnPosition.position, transform.rotation);
             Invoke("SpawnTiro", 0.2f);
         }

@@ -30,27 +30,29 @@ public class InimigoControl : MonoBehaviour
         {
             if(gameObject.tag == "ColetavelA")
             {
-               GameController.coletavelA++;
-               //GameController.Pontos++; //+10 pontos para cada coletavel
-               Instantiate (particula, transform.position, Quaternion.identity);
+                GameController.coletavelA++;
+                SoundControl.sounds.somColectedFruits.Play();
+                Instantiate (particula, transform.position, Quaternion.identity);
             }
 
             else if(gameObject.tag == "ColetavelB")
             {
                GameController.coletavelB++;
-               //GameController.Pontos++; //+10 pontos para cada coletavel
-               Instantiate (particula, transform.position, Quaternion.identity);
+                SoundControl.sounds.somColectedFruits.Play();
+                Instantiate (particula, transform.position, Quaternion.identity);
             }
             
             else if(gameObject.tag == "Moeda")
             {
                GameController.MoedaColet++;
-               Instantiate (particula, transform.position, Quaternion.identity);
+                SoundControl.sounds.somColectedCoins.Play();
+                Instantiate (particula, transform.position, Quaternion.identity);
             }
 
             else if(gameObject.tag == "Inimigo")
             {
-               GameController.VidaPlayer--;
+                GameController.VidaPlayer--;
+                SoundControl.sounds.somDanoNoPlayer.Play();
                 Instantiate(particula, transform.position, Quaternion.identity);
 
                 //player levar dano
@@ -65,12 +67,12 @@ public class InimigoControl : MonoBehaviour
         {
             Instantiate(explosao, transform.position, Quaternion.identity); //spawnando fx de explosão para quando o tiro colidir em algo
 
+            SoundControl.sounds.somDanoTiro.Play();
+
             Destroy(this.gameObject); //DESTRUIR o objeto tiro (destruir a bala)
             Destroy(collision.gameObject); //DESTRUIR o objeto que colidiu com o tiro
 
             GameController.MoedaColet =+5; //+5 moedas por matar inimigo
-
-           //GameController.Pontos++; //+5 pontos por matar inimigo
         } 
     }
 

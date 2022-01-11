@@ -15,22 +15,23 @@ public class GameController : MonoBehaviour
 
     public GameObject panelWins, panelGameOver;
     
-    [Header("Atributos Player")]
+    [Header("--Atributos Player--")]
     public int VidaPlayer = 3;
     public int danoPlayer = 10;
     public GameObject[] VidasHUD = new GameObject[3];
      
-    //public int Pontos = 0;
     public int MoedaColet = 0;
 
     public int coletavelA = 0, coletavelAMAX; 
     public int coletavelB = 0, coletavelBMAX;
 
-    [Header("Para textos")]
-    //public Text tpontos;
+    [Header("--TEXTOS--")]
     public Text tMoedaColet;
     public Text tcoletavelA;
     public Text tcoletavelB;
+
+    //[Header("--SONS--")]
+    public AudioSource soundGame;
 
     //Controle do tempo de spawn Inimigos/ColetavelA/ColetavelB
     [SerializeField] public float delaySpawnInimigo = 3, delaySpawnColetavelA = 2.1f, delaySpawnColetavelB = 2.5f, delaySpawnMoedaColetavel = 2.5f; 
@@ -47,13 +48,14 @@ public class GameController : MonoBehaviour
             chefaoStatus = GameObject.FindGameObjectWithTag("Chefao").GetComponent<ChefaoStatus>();
         }
 
-
         //carrega o valor do objetivo Max de acordo com a fase escolhida
         coletavelAMAX = PlayerPrefs.GetInt("objetivoMaxMaca");
         coletavelBMAX = PlayerPrefs.GetInt("objetivoMaxLaranja");
 
         //desabilita panel de vitoria
         panelWins.SetActive(false);
+
+        soundGame.Play();
 
         //Escada do tempo = 1 (normal)
         Time.timeScale = 1;
@@ -84,11 +86,11 @@ public class GameController : MonoBehaviour
         else
         {
             panelGameOver.SetActive(true);
+            //soundGame.Stop();
+            //SoundControl.sounds.somGameOver.Play();
         }
 
-
             HUDdisplay();
-
     }
 
     void ConditionWinFase()
@@ -221,7 +223,10 @@ public class GameController : MonoBehaviour
         if (coletavelA >= coletavelAMAX && coletavelB >= coletavelBMAX)
         {
             panelWins.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 0; //a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação
+            
+            //SoundControl.sounds.somWins.Play();
+            //soundGame.Stop();
         }
     }
 
@@ -243,4 +248,6 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+
 }    
