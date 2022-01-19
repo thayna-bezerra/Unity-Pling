@@ -874,6 +874,7 @@ MonoBehaviour:
   explosao: {fileID: 0}
   particula: {fileID: 0}
   rb2d: {fileID: 0}
+  AnimacoesPlayer: {fileID: 0}
 --- !u!50 &369026577
 Rigidbody2D:
   serializedVersion: 4

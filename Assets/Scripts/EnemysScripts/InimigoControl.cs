@@ -5,6 +5,7 @@ using UnityEngine;
 public class InimigoControl : MonoBehaviour
 {
     public GameController GameController;
+
     public GameObject explosao, particula;
     
     public Rigidbody2D rb2d; //Variavel de referencia do Rb2d
@@ -16,6 +17,7 @@ public class InimigoControl : MonoBehaviour
 
         GameController = GameObject.Find("GameController").GetComponent<GameController>();
 
+        //PlayerMove = GameObject.Find("PlayerMove").GetComponent<PlayerMove>(); //
     }
 
     void Update()
@@ -54,9 +56,6 @@ public class InimigoControl : MonoBehaviour
                 GameController.VidaPlayer--;
                 SoundControl.sounds.somDanoNoPlayer.Play();
                 Instantiate(particula, transform.position, Quaternion.identity);
-
-                //player levar dano
-
             }
 
            Destroy(this.gameObject);

@@ -15,6 +15,8 @@ public class PlayerMove : MonoBehaviour
     public bool IsAtk;
     public bool IsActive;
 
+    public bool isDamage; //
+
     [Header ("----------------------------------")]
     [System.NonSerialized] public Rigidbody2D pulo;
     [System.NonSerialized] public Animator AnimacoesPlayer;
@@ -27,6 +29,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject WaterBullet, smoke;
 
     public Transform SpawnPosition;
+
+    public float cont = 0.5f;//
 
     private void Start()
     {
@@ -85,35 +89,87 @@ public class PlayerMove : MonoBehaviour
             SoundControl.sounds.somPulo.Play();
         }
     }
+    public void AnimStatePlayer()
+    {
+        if (isDamage == false)
+        {
+            if (IsAtk) //se player estiver atacando // animação de ataque
+            {
+                //primeira condição pois caso o player NÃO esteja atacando
+                // as outras animações poderão ser chamadas normalmente
+                AnimacoesPlayer.Play("AtirarPlayer");
+            }
 
+            else //senão estiver atacando
+            {
+                if (!isJumping) // e se estiver no chão (groundCheck colidindo com o chão / player NÃO estiver pulando)
+                {
+                    if (IsActive) //se o player estiver caminhando (em movimentação)
+                    {
+                        AnimacoesPlayer.Play("WalkPlayer");
+                    }
+
+                    else //SE NÃO ESTIVER CAMINHANDO -- isActive no false -- gato parado
+                    {
+                        AnimacoesPlayer.Play("IdlePlayer");
+                    }
+                }
+
+                else if (isJumping) //se NÃO estiver no chão -- isJumping TRUE -- animação de PULAR
+                {
+                    AnimacoesPlayer.Play("JumpPlayer");
+                }
+            }
+        }
+
+        else if (isDamage == true)
+        {
+            cont -= Time.deltaTime;
+            AnimacoesPlayer.Play("DanoPlayer");
+
+            if (cont < 0) { isDamage = false; }
+        }
+    }
+
+    /*
     public void AnimStatePlayer ()
     {
-        if(IsAtk) //se player estiver atacando // animação de ataque
+        if (IsAtk) //se player estiver atacando // animação de ataque
         {
-            /*primeira condição pois caso o player NÃO esteja atacando
-             * as outras animações poderão ser chamadas normalmente*/
-            AnimacoesPlayer.Play("AtirarPlayer"); 
+            //primeira condição pois caso o player NÃO esteja atacando
+            // as outras animações poderão ser chamadas normalmente
+            AnimacoesPlayer.Play("AtirarPlayer");
         }
 
         else //senão estiver atacando
         {
-             if(!isJumping) // e se estiver no chão (groundCheck colidindo com o chão / player NÃO estiver pulando)
-             {
-                 if(IsActive) //se o player estiver caminhando (em movimentação)
-                 {
-                     AnimacoesPlayer.Play("WalkPlayer"); 
-                 }
+            if (!isJumping) // e se estiver no chão (groundCheck colidindo com o chão / player NÃO estiver pulando)
+            {
+                if (IsActive) //se o player estiver caminhando (em movimentação)
+                {
+                    AnimacoesPlayer.Play("WalkPlayer");
+                }
 
-                 else //SE NÃO ESTIVER CAMINHANDO -- isActive no false -- gato parado
-                 {
-                     AnimacoesPlayer.Play("IdlePlayer");
-                 }
-             }
+                else //SE NÃO ESTIVER CAMINHANDO -- isActive no false -- gato parado
+                {
+                    AnimacoesPlayer.Play("IdlePlayer");
+                }
+            }
 
-             else //se NÃO estiver no chão -- isJumping TRUE -- animação de PULAR
-             {
+            else if (isJumping == true) //se NÃO estiver no chão -- isJumping TRUE -- animação de PULAR
+            {
                 AnimacoesPlayer.Play("JumpPlayer");
-             }
+            }
+
+        }
+    }*/
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Inimigo")
+        {
+            isDamage = true;
+            cont = 0.5f;
         }
     }
 
@@ -128,17 +184,5 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void SpawnTiro()
-    {
-        IsAtk = false;
-    }
+    public void SpawnTiro() { IsAtk = false; }
 }
-
-        /* SOBRE OPERADOR TENARIO
-        {
-            AnimacoesPlayer.SetInteger("estado", a == true ? 1 : 0);
-            //Operador tenario executa uma verificicação condicional
-            //A atribuição dos valores depende do resultado da condição
-            //Caso condição é verdadeira, executa o valor do campo 1
-            //Caso condição retorna false, executa o valor do campo 2
-        }*/

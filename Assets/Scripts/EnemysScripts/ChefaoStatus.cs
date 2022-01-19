@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ChefaoStatus : MonoBehaviour
 {
-
     public int maxLife = 100;
     public int currentLife;
 
