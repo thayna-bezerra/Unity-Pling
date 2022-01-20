@@ -30,9 +30,6 @@ public class GameController : MonoBehaviour
     public Text tcoletavelA;
     public Text tcoletavelB;
 
-    //[Header("--SONS--")]
-    public AudioSource soundGame;
-
     //Controle do tempo de spawn Inimigos/ColetavelA/ColetavelB
     [SerializeField] public float delaySpawnInimigo = 3, delaySpawnColetavelA = 2.1f, delaySpawnColetavelB = 2.5f, delaySpawnMoedaColetavel = 2.5f; 
   
@@ -54,8 +51,6 @@ public class GameController : MonoBehaviour
 
         //desabilita panel de vitoria
         panelWins.SetActive(false);
-
-        soundGame.Play();
 
         //Escada do tempo = 1 (normal)
         Time.timeScale = 1;
@@ -86,8 +81,6 @@ public class GameController : MonoBehaviour
         else
         {
             panelGameOver.SetActive(true);
-            //soundGame.Stop();
-            //SoundControl.sounds.somGameOver.Play();
         }
 
             HUDdisplay();
@@ -247,5 +240,9 @@ public class GameController : MonoBehaviour
     public void restartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void seguirLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
 }    
