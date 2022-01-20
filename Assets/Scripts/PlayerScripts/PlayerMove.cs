@@ -89,6 +89,7 @@ public class PlayerMove : MonoBehaviour
             SoundControl.sounds.somPulo.Play();
         }
     }
+
     public void AnimStatePlayer()
     {
         if (isDamage == false)

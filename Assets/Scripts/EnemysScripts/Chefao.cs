@@ -10,7 +10,7 @@ public class Chefao : MonoBehaviour
     public float limitScreen = 1.5f;
 
     //Controle dos spawms
-    public GameObject tiro;
+    public GameObject tiro; //enemy sendo spawnado
     public Transform spawnPosition;
     public float delaySpawn = 1, minDelay = 1, maxDelay = 5;
 
@@ -22,6 +22,10 @@ public class Chefao : MonoBehaviour
 
     public Animator animBoss;
 
+    public bool isDamage = false;
+    public bool isActive = false;
+    public float cont = 0.2f;
+
     //var para entrada chefao
     //public bool startChefao = true;
 
@@ -32,49 +36,67 @@ public class Chefao : MonoBehaviour
         chefaoStatus = GetComponent<ChefaoStatus>();
         rb2d = GetComponent<Rigidbody2D>();
 
-            //chefao sem interação com a gravidade
-            //rb2d.bodyType = RigidbodyType2D.Kinematic;
+        animBoss = GetComponent<Animator>();
+        isActive = true;
+        //chefao sem interação com a gravidade
+        //rb2d.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    void Update()
-    {
-        if(chefaoStatus.currentLife > 0)
-        {
-            if(transform.position.y == 7)
-            {
-                rb2d.bodyType = RigidbodyType2D.Dynamic;
-                //rb2d.gravityScale = -0.4f;
-            }
+     void Update()
+     {
+         if(chefaoStatus.currentLife > 0)
+         {
+             if(transform.position.y == 7)
+             {
+                 rb2d.bodyType = RigidbodyType2D.Dynamic;
+                 //rb2d.gravityScale = -0.4f;
+             }
 
-            else if (transform.position.y <= 2.26)
-            {
-                rb2d.bodyType = RigidbodyType2D.Static;
-                HorinzontalMove();
-                SpawnTiros();
-            }
+             else if (transform.position.y <= 2.26)
+             {
+                 rb2d.bodyType = RigidbodyType2D.Static;
+                 HorinzontalMove();
+                 SpawnTiros();
+                 AnimStateBoss();
+             }
+         }
+
+         else
+         {
+             animBoss.Play("deadBoss");
+             //morte
+             bc2D.enabled = false;
+
+             rb2d.bodyType = RigidbodyType2D.Dynamic;
+             rb2d.gravityScale = timeDead;
+             timeDead += Time.deltaTime;
+
+             if (transform.position.y < -7) Destroy(this.gameObject);
+         }
+     }
+
+    void AnimStateBoss()
+    {
+        if (isActive == true)
+        {
+            animBoss.Play("Boss");
         }
 
-        else
+        else if (isDamage == true)
         {
+            cont -= Time.deltaTime;
+            animBoss.Play("damageBoss");
 
-            animBoss = GetComponent<Animator>();
-            animBoss.Play("deadBoss");
-            //morte
-            bc2D.enabled = false;
-
-            rb2d.bodyType = RigidbodyType2D.Dynamic;
-            rb2d.gravityScale = timeDead;
-            timeDead += Time.deltaTime;
-
-            if (transform.position.y < -7) Destroy(this.gameObject);
+            if (cont < 0) { isDamage = false; isActive = true; }
         }
     }
 
     void HorinzontalMove()
     {
+
         if(!dir)
         {
-             transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+            transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
         }
         else
         {
@@ -97,6 +119,16 @@ public class Chefao : MonoBehaviour
         {
             delaySpawn = Random.Range(minDelay, maxDelay);
             Instantiate(tiro, spawnPosition.position, Quaternion.identity);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tiro"))
+        {
+            isActive = false;
+            isDamage = true;
+            cont = 0.2f;
         }
     }
 }

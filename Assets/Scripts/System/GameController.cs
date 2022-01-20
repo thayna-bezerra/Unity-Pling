@@ -223,7 +223,7 @@ public class GameController : MonoBehaviour
         if (coletavelA >= coletavelAMAX && coletavelB >= coletavelBMAX)
         {
             panelWins.SetActive(true);
-            Time.timeScale = 0; //a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação
+            Time.timeScale = 0; //a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação (caso for 1)
             
             //SoundControl.sounds.somWins.Play();
             //soundGame.Stop();
@@ -248,6 +248,4 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-
 }    
