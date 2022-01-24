@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class MenuInicial : MonoBehaviour
 {
     //Habilitar \\ desabilitar paneis do menu inicial
-    public GameObject panelTelaInicial, panelSelecaoFase;
+    public GameObject panelTelaInicial, panelSelecaoFase, panelOptions;
+
+    public Sprite[] faseBloqueada;
 
     public Button[] btnLevel;
     public int btnDesbloqueados = 0;
@@ -16,6 +18,8 @@ public class MenuInicial : MonoBehaviour
     {
         panelTelaInicial.SetActive(true);
         panelSelecaoFase.SetActive(false);
+
+        panelOptions.SetActive(false);
 
         //Valor dessa var é igual ao valor da fase carregada (fase1 = 1, fase2 = 2..
         btnDesbloqueados = PlayerPrefs.GetInt("LevelComplete");
@@ -28,6 +32,7 @@ public class MenuInicial : MonoBehaviour
         for (int i = btnDesbloqueados; i < btnLevel.Length; i++)
         {
             btnLevel[i].interactable = false;
+            btnLevel[i].image.sprite = faseBloqueada[i];
         }
     }
 
@@ -45,8 +50,14 @@ public class MenuInicial : MonoBehaviour
         SoundControl.sounds.click.Play();
         panelTelaInicial.SetActive(true);
         panelSelecaoFase.SetActive(false);
+        panelOptions.SetActive(false);
     }
     #endregion
+
+    public void options()
+    {
+        panelOptions.SetActive(true);
+    }
 
     public void levelName(string name)
     {
@@ -66,5 +77,7 @@ public class MenuInicial : MonoBehaviour
     public void zerarSaves()
     {
         PlayerPrefs.DeleteAll();
+
+        Application.Quit();
     }
 }
