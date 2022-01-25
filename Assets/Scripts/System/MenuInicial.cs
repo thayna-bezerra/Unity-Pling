@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MenuInicial : MonoBehaviour
 {
     //Habilitar \\ desabilitar paneis do menu inicial
-    public GameObject panelTelaInicial, panelSelecaoFase, panelOptions;
+    public GameObject panelTelaInicial, panelSelecaoFase, panelSettings;
 
     public Sprite[] faseBloqueada;
 
@@ -19,7 +19,7 @@ public class MenuInicial : MonoBehaviour
         panelTelaInicial.SetActive(true);
         panelSelecaoFase.SetActive(false);
 
-        panelOptions.SetActive(false);
+        panelSettings.SetActive(false);
 
         //Valor dessa var é igual ao valor da fase carregada (fase1 = 1, fase2 = 2..
         btnDesbloqueados = PlayerPrefs.GetInt("LevelComplete");
@@ -50,14 +50,13 @@ public class MenuInicial : MonoBehaviour
         SoundControl.sounds.click.Play();
         panelTelaInicial.SetActive(true);
         panelSelecaoFase.SetActive(false);
-        panelOptions.SetActive(false);
+
+        panelSettings.SetActive(false);
     }
     #endregion
 
-    public void options()
-    {
-        panelOptions.SetActive(true);
-    }
+    public void Settings() { panelSettings.SetActive(true); }
+
 
     public void levelName(string name)
     {
