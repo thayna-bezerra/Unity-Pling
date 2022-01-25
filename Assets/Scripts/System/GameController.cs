@@ -46,8 +46,9 @@ public class GameController : MonoBehaviour
         }
 
         //carrega o valor do objetivo Max de acordo com a fase escolhida
-        coletavelAMAX = PlayerPrefs.GetInt("objetivoMaxMaca");
-        coletavelBMAX = PlayerPrefs.GetInt("objetivoMaxLaranja");
+        //coletavelAMAX = PlayerPrefs.GetInt("objetivoMaxMaca");
+        //coletavelBMAX = PlayerPrefs.GetInt("objetivoMaxLaranja");
+
 
         //desabilita panel de vitoria
         panelWins.SetActive(false);
@@ -86,15 +87,15 @@ public class GameController : MonoBehaviour
             HUDdisplay();
     }
 
-    void ConditionWinFase()
+    /*void ConditionWinFase()
     {
         if(coletavelA == coletavelAMAX && coletavelB == coletavelBMAX){
             coletavelA = 0;
             coletavelB = 0;
-            coletavelAMAX += 5;
-            coletavelBMAX += 5;
+            //coletavelAMAX += 5;
+            //coletavelBMAX += 5;
         }
-    }
+    }*/
 
     #region Spawns
     void SpawnAll()
@@ -121,7 +122,7 @@ public class GameController : MonoBehaviour
         if(delaySpawnInimigo <= 0 )
         {
             InstantiateObjects(Inimigo);
-            delaySpawnInimigo = Random.Range(1,4);
+            delaySpawnInimigo = Random.Range(0.5f,5);
         }
     }
 
@@ -134,7 +135,7 @@ public class GameController : MonoBehaviour
           if(delaySpawnColetavelA <= 0)
           {
             InstantiateObjects(ColetavelA);
-            delaySpawnColetavelA = Random.Range(2,6);
+            delaySpawnColetavelA = Random.Range(0.5f,4);
           }
         }
     }
@@ -145,7 +146,7 @@ public class GameController : MonoBehaviour
         if(delaySpawnColetavelB <= 0)
         {
             InstantiateObjects(ColetavelB);
-            delaySpawnColetavelB = Random.Range(1,5);
+            delaySpawnColetavelB = Random.Range(0.5f,4);
         }
         
     }
@@ -155,7 +156,7 @@ public class GameController : MonoBehaviour
         if(delaySpawnMoedaColetavel <= 0)
         {
             InstantiateObjects(MoedaColetavel);
-            delaySpawnMoedaColetavel = Random.Range(1,3);
+            delaySpawnMoedaColetavel = Random.Range(0.5f,3);
         }
         
     }
@@ -164,21 +165,24 @@ public class GameController : MonoBehaviour
     {
         Instantiate (objeto, transform.position = new Vector3 (Random.Range(-2,2),6,0), transform.rotation);
     }
+
 #endregion
 
     //exibir informações na tela
     void HUDdisplay()
     {
-        //tpontos.text = Pontos.ToString();
         tMoedaColet.text = MoedaColet.ToString();
         tcoletavelA.text = coletavelA.ToString() + "/" + coletavelAMAX.ToString();
         tcoletavelB.text = coletavelB.ToString() + "/" + coletavelBMAX.ToString();
 
-       /* if (coletavelA = 5 && coletavelB = 5)
+        if (coletavelA >= coletavelAMAX)
         {
             tcoletavelA.text = "<color=#ff0000>" +  coletavelA.ToString() + "/" + coletavelAMAX.ToString() + "</color>";
+        } 
+        if (coletavelB >= coletavelBMAX)
+        {
             tcoletavelB.text = "<color=#ff0000>" +  coletavelB.ToString() + "/" + coletavelBMAX.ToString() + "</color>";
-        }*/
+        }
 
         //parte visual vida
         switch (VidaPlayer) 
@@ -216,10 +220,7 @@ public class GameController : MonoBehaviour
         if (coletavelA >= coletavelAMAX && coletavelB >= coletavelBMAX)
         {
             panelWins.SetActive(true);
-            Time.timeScale = 0; //a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação (caso for 1)
-            
-            //SoundControl.sounds.somWins.Play();
-            //soundGame.Stop();
+            Time.timeScale = 0; //caso 1 -> a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação (caso for 1)
         }
     }
 
@@ -237,12 +238,6 @@ public class GameController : MonoBehaviour
         }
     }  
 
-    public void restartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void seguirLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
-    }
+    public void restartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    public void seguirLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1); }
 }    

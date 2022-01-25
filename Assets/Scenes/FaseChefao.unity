@@ -1372,7 +1372,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/5
+  m_Text: 0/15
 --- !u!222 &402708498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1650,7 +1650,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1586800096}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ProximaFase
+        m_MethodName: saveLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3635,7 +3635,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/5
+  m_Text: 0/15
 --- !u!222 &1382813112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3902,13 +3902,13 @@ MonoBehaviour:
   - {fileID: 1842122025}
   MoedaColet: 0
   coletavelA: 0
-  coletavelAMAX: 2
+  coletavelAMAX: 15
   coletavelB: 0
-  coletavelBMAX: 2
+  coletavelBMAX: 15
   tMoedaColet: {fileID: 11017203}
   tcoletavelA: {fileID: 402708497}
   tcoletavelB: {fileID: 1382813111}
-  delaySpawnInimigo: 2
+  delaySpawnInimigo: 0.75
   delaySpawnColetavelA: 3
   delaySpawnColetavelB: 4
   delaySpawnMoedaColetavel: 1.5
@@ -5069,6 +5069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04764866807129449a2e93d2d6c8b059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioOn: 0
+  btnAudio: {fileID: 0}
+  btnEmptyOff: {fileID: 0}
+  btnOn: {fileID: 0}
   somTiro: {fileID: 946816298}
   somPulo: {fileID: 1736745985}
   somColectedFruits: {fileID: 817608462}

@@ -1020,7 +1020,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/5
+  m_Text: 0/9
 --- !u!222 &402708498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3640,7 +3640,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/5
+  m_Text: 0/7
 --- !u!222 &1382813112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4104,15 +4104,15 @@ MonoBehaviour:
   - {fileID: 1842122025}
   MoedaColet: 0
   coletavelA: 0
-  coletavelAMAX: 2
+  coletavelAMAX: 9
   coletavelB: 0
-  coletavelBMAX: 2
+  coletavelBMAX: 7
   tMoedaColet: {fileID: 11017203}
   tcoletavelA: {fileID: 402708497}
   tcoletavelB: {fileID: 1382813111}
-  delaySpawnInimigo: 2
-  delaySpawnColetavelA: 3
-  delaySpawnColetavelB: 4
+  delaySpawnInimigo: 5
+  delaySpawnColetavelA: 6
+  delaySpawnColetavelB: 7
   delaySpawnMoedaColetavel: 1.5
   player: {fileID: 172265467}
 --- !u!4 &1586800097
@@ -4921,6 +4921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04764866807129449a2e93d2d6c8b059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioOn: 0
+  btnAudio: {fileID: 0}
+  btnEmptyOff: {fileID: 0}
+  btnOn: {fileID: 0}
   somTiro: {fileID: 115708327}
   somPulo: {fileID: 997939360}
   somColectedFruits: {fileID: 72785948}
