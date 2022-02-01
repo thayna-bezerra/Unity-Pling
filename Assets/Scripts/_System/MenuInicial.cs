@@ -6,23 +6,29 @@ using UnityEngine.UI;
 
 public class MenuInicial : MonoBehaviour
 {
-    //Habilitar \\ desabilitar paneis do menu inicial
-    public GameObject panelTelaInicial, panelSelecaoFase, panelSettings;
+    [Header("Panels")] //Para ATIVAR e DESATIVAR 
+    public GameObject panelTelaInicial;
+    public GameObject panelSelecaoFase;
+    public GameObject panelSettings;
 
-    public Sprite[] faseBloqueada;
+    [Space(10)]
 
-    public Button[] btnLevel;
+    [Header("Configuarações do Level Select")]
     public int btnDesbloqueados = 0;
+
+    public Sprite[] faseBloqueada; //Sprites de Unlock Level
+    public Button[] btnLevel;
+
 
     private void Start()
     {
+        //Iniciar apenas com o panelTelaInicial ATIVO
         panelTelaInicial.SetActive(true);
-        panelSelecaoFase.SetActive(false);
 
+        panelSelecaoFase.SetActive(false);
         panelSettings.SetActive(false);
 
-        //Valor dessa var é igual ao valor da fase carregada (fase1 = 1, fase2 = 2..
-        btnDesbloqueados = PlayerPrefs.GetInt("LevelComplete");
+        btnDesbloqueados = PlayerPrefs.GetInt("LevelComplete"); //Valor dessa var é igual ao valor da fase carregada (fase1 = 1, fase2 = 2..) //O valor ficará sendo guardado no PlayerPrefs
     }
 
     private void Update()
@@ -37,7 +43,6 @@ public class MenuInicial : MonoBehaviour
     }
 
     #region Panels
-
     public void ativarSelecaoFasel()
     {
         SoundControl.sounds.click.Play();
@@ -57,26 +62,15 @@ public class MenuInicial : MonoBehaviour
 
     public void Settings() { panelSettings.SetActive(true); }
 
+    public void levelName(string name) { SceneManager.LoadScene(name); }
 
-    public void levelName(string name)
-    {
-        SceneManager.LoadScene(name);
-    }
+    public void objMaca(int objMaca) { PlayerPrefs.SetInt("objetivoMaxMaca", objMaca); }
 
-    public void objMaca(int objMaca)
-    {
-        PlayerPrefs.SetInt("objetivoMaxMaca", objMaca);
-    }
-
-    public void objLaranja(int objLaranja)
-    {
-        PlayerPrefs.SetInt("objetivoMaxLaranja", objLaranja);
-    }
+    public void objLaranja(int objLaranja) { PlayerPrefs.SetInt("objetivoMaxLaranja", objLaranja); }
 
     public void zerarSaves()
     {
         PlayerPrefs.DeleteAll();
-
         Application.Quit();
     }
 }

@@ -6,55 +6,69 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //OBJETOS QUE SERÃO SPAWNADOS
+    [Header("Atributos Player")]
+    public int VidaPlayer = 3;
+    public int danoPlayer = 10;
+
+    [Space(10)]
+
+    [Header("Coletáveis")]
+    public int MoedaColet = 0;
+    public int coletavelA = 0, coletavelAMAX; 
+    public int coletavelB = 0, coletavelBMAX;
+
+    [Space(10)]
+
     [Header("Objetos que serão spawnados")]
     public GameObject Inimigo;
     public GameObject ColetavelA;
     public GameObject ColetavelB;
     public GameObject MoedaColetavel;
 
-    public GameObject panelWins, panelGameOver;
-    
-    [Header("--Atributos Player--")]
-    public int VidaPlayer = 3;
-    public int danoPlayer = 10;
-    public GameObject[] VidasHUD = new GameObject[3];
-     
-    public int MoedaColet = 0;
+    [Space(10)]
 
-    public int coletavelA = 0, coletavelAMAX; 
-    public int coletavelB = 0, coletavelBMAX;
+    [Header("Controle de Tempo dos Spawns - Coletáveis")]
+    public float delaySpawnInimigo = 3; 
+    public float delaySpawnColetavelA = 2.1f; 
+    public float delaySpawnColetavelB = 2.5f; 
+    public float delaySpawnMoedaColetavel = 2.5f; 
 
-    [Header("--TEXTOS--")]
+    [Space(10)]
+
+    [Header("Panel de Vitória e Derrota")]
+    public GameObject panelWins;
+    public GameObject panelGameOver;
+
+    [Space(10)]
+
+    [Header("HUD")]
     public Text tMoedaColet;
     public Text tcoletavelA;
     public Text tcoletavelB;
+    public GameObject[] VidasHUD = new GameObject[3];
 
-    //Controle do tempo de spawn Inimigos/ColetavelA/ColetavelB
-    [SerializeField] public float delaySpawnInimigo = 3, delaySpawnColetavelA = 2.1f, delaySpawnColetavelB = 2.5f, delaySpawnMoedaColetavel = 2.5f; 
-  
+    [Space(10)]
+
     public PlayerMove player;
-
     ChefaoStatus chefaoStatus; // identificar quanto de vida tem o chefão
+
+    //[System.NonSerialized] Para esconder uma variável pública no Inspector
+    //[SerializeField] Para Serializar uma variável privada // Para a variável aparecer no Inspector
 
     private void Start()
     {
-        //acessando 
-        if(SceneManager.GetActiveScene().name == "FaseChefao")
+        if(SceneManager.GetActiveScene().name == "FaseChefao") //acessando
         {
             chefaoStatus = GameObject.FindGameObjectWithTag("Chefao").GetComponent<ChefaoStatus>();
         }
+        
+        panelWins.SetActive(false); //desabilita panel de vitoria
+        
+        Time.timeScale = 1; //Escada do tempo = 1 (normal)
 
         //carrega o valor do objetivo Max de acordo com a fase escolhida
         //coletavelAMAX = PlayerPrefs.GetInt("objetivoMaxMaca");
         //coletavelBMAX = PlayerPrefs.GetInt("objetivoMaxLaranja");
-
-
-        //desabilita panel de vitoria
-        panelWins.SetActive(false);
-
-        //Escada do tempo = 1 (normal)
-        Time.timeScale = 1;
     }
 
     private void Update()
@@ -62,40 +76,21 @@ public class GameController : MonoBehaviour
         if (VidaPlayer > 0)
         {
             //os spawns so acontecem quando não for a tela do chefão
-            if (SceneManager.GetActiveScene().name != "FaseChefao")
-            {
-                SpawnAll();
-            }
+            if (SceneManager.GetActiveScene().name != "FaseChefao") { SpawnAll(); }
 
             else if (SceneManager.GetActiveScene().name == "FaseChefao")
             {
-                if(chefaoStatus.currentLife <= 0)
-                {
-                    SpawnAll();
-                }
+                if(chefaoStatus.currentLife <= 0) { SpawnAll(); }
             }
 
             ObjetivoConcluido();
             panelGameOver.SetActive(false);
         }
 
-        else
-        {
-            panelGameOver.SetActive(true);
-        }
+        else { panelGameOver.SetActive(true); }
 
             HUDdisplay();
     }
-
-    /*void ConditionWinFase()
-    {
-        if(coletavelA == coletavelAMAX && coletavelB == coletavelBMAX){
-            coletavelA = 0;
-            coletavelB = 0;
-            //coletavelAMAX += 5;
-            //coletavelBMAX += 5;
-        }
-    }*/
 
     #region Spawns
     void SpawnAll()
@@ -168,23 +163,16 @@ public class GameController : MonoBehaviour
 
 #endregion
 
-    //exibir informações na tela
     void HUDdisplay()
     {
         tMoedaColet.text = MoedaColet.ToString();
         tcoletavelA.text = coletavelA.ToString() + "/" + coletavelAMAX.ToString();
         tcoletavelB.text = coletavelB.ToString() + "/" + coletavelBMAX.ToString();
 
-        if (coletavelA >= coletavelAMAX)
-        {
-            tcoletavelA.text = "<color=#ff0000>" +  coletavelA.ToString() + "/" + coletavelAMAX.ToString() + "</color>";
-        } 
-        if (coletavelB >= coletavelBMAX)
-        {
-            tcoletavelB.text = "<color=#ff0000>" +  coletavelB.ToString() + "/" + coletavelBMAX.ToString() + "</color>";
-        }
-
-        //parte visual vida
+        if (coletavelA >= coletavelAMAX) { tcoletavelA.text = "<color=#ff0000>" +  coletavelA.ToString() + "/" + coletavelAMAX.ToString() + "</color>"; } 
+        if (coletavelB >= coletavelBMAX) { tcoletavelB.text = "<color=#ff0000>" +  coletavelB.ToString() + "/" + coletavelBMAX.ToString() + "</color>"; }
+       
+        #region HUD Life
         switch (VidaPlayer) 
         {
             case 3:
@@ -212,15 +200,15 @@ public class GameController : MonoBehaviour
                 break;
 
         }
+        #endregion
     }
 
     public void ObjetivoConcluido()
     {
-        //verificar se o objetivo foi concluido
-        if (coletavelA >= coletavelAMAX && coletavelB >= coletavelBMAX)
+        if (coletavelA >= coletavelAMAX && coletavelB >= coletavelBMAX) //verificar se o objetivo foi concluido
         {
             panelWins.SetActive(true);
-            Time.timeScale = 0; //caso 1 -> a animaçao no panel vai funcionar, porém o jogo continuará contando pontuação (caso for 1)
+            Time.timeScale = 0; //tempo zerado -> animação do panelWin não vai rodar
         }
     }
 
@@ -232,10 +220,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene("MenuInicial");
         }
 
-        else
-        {
-             SceneManager.LoadScene("MenuInicial");
-        }
+        else { SceneManager.LoadScene("MenuInicial"); }
     }  
 
     public void restartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
