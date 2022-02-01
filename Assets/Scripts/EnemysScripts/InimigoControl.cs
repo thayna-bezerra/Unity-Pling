@@ -11,13 +11,11 @@ public class InimigoControl : MonoBehaviour
     public Rigidbody2D rb2d; //Variavel de referencia do Rb2d
 
     void Start()
-    {    //Acessando o componente Rb2D e realizando alteração no valor da Gravidade
-        rb2d = GetComponent<Rigidbody2D>();
+    {    
+        rb2d = GetComponent<Rigidbody2D>(); //Acessando o componente Rb2D e realizando alteração no valor da Gravidade
         rb2d.gravityScale = Random.Range(0.2f, 0.6f); //GRAVIDADE   //(0.2f, 0.4f); 
 
         GameController = GameObject.Find("GameController").GetComponent<GameController>();
-
-        //PlayerMove = GameObject.Find("PlayerMove").GetComponent<PlayerMove>(); //
     }
 
     void Update()

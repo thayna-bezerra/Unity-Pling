@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7535234858953711922}
   - component: {fileID: 7535234858953711921}
   - component: {fileID: 7535234858953711920}
-  - component: {fileID: -7072523278901134009}
+  - component: {fileID: -5729372326376876388}
   m_Layer: 0
   m_Name: SmokeFall
   m_TagString: Untagged
@@ -104,7 +104,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-7072523278901134009
+--- !u!114 &-5729372326376876388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,6 +113,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7535234858953711935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0c693900ed2f7469580239d8325c66, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b22675985983d14087d098e84163268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

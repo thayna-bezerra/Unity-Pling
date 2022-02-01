@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ChefaoStatus : MonoBehaviour
 {
-    //public bool isDamage = false;
     public int maxLife = 100;
     public int currentLife;
 
@@ -25,19 +24,12 @@ public class ChefaoStatus : MonoBehaviour
         barraDeVida.maxValue = maxLife;
     }
 
-    void Update()
-    {
-        barraDeVida.value = currentLife;
-
-    }
+    void Update() { barraDeVida.value = currentLife; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Tiro"))
         {
-            //isDamage = true;
-            //cont = 0.5f;
-
             Destroy(collision.gameObject);
             currentLife -= gc.danoPlayer;
             Instantiate(explosao, collision.transform.position, Quaternion.identity);

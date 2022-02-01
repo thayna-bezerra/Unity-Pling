@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3094322323589921504}
   - component: {fileID: 3094322323589921505}
   - component: {fileID: 3094322323589921438}
-  - component: {fileID: 3094322323589921437}
   - component: {fileID: -3848675975276461111}
+  - component: {fileID: 6580773421834810461}
   m_Layer: 0
   m_Name: WaterBullet
   m_TagString: Tiro
@@ -127,18 +127,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3094322323589921437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094322323589921506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc904e6a4eb7494a8615342dae673db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-3848675975276461111
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,3 +143,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.74
+--- !u!114 &6580773421834810461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094322323589921506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0c693900ed2f7469580239d8325c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

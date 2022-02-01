@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 924822271205334946}
   - component: {fileID: 924822271205334945}
   - component: {fileID: 924822271205334944}
-  - component: {fileID: 6254380339727181514}
+  - component: {fileID: -8878739752706173119}
   m_Layer: 0
   m_Name: SmokeUp
   m_TagString: Untagged
@@ -104,7 +104,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6254380339727181514
+--- !u!114 &-8878739752706173119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,6 +113,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 924822271205334959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0c693900ed2f7469580239d8325c66, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b22675985983d14087d098e84163268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

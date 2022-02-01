@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class fxDestroy : MonoBehaviour
 {
-    //invocar o metodo "Destruidor" (destruir este game object) apos 0.2f 
+    //invocar o metodo "Destruidor" (destruir este game object) apos 2.5f 
 
-    void Start() { Invoke("Destruidor", 0.2f); } 
+    void Start() { Invoke("Destruir", 2.5f); } 
 
-    void Destruidor() { Destroy(this.gameObject); }
+    void Destruir() { Destroy(this.gameObject); }
 }

@@ -4,38 +4,41 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-//private AudioSource sound;
-
     [Header("Controle de movimentação/pulo")]
     public float speed = 5;
     public float jump = 5;
 
-    //detectar o chão/evitar dois pulos
-    public bool isJumping; //padrão FALSE
+    [Space(10)]
+
+    [Header("Variaveis Booleanas")]
+    public bool isJumping; //detectar o chão/evitar dois pulos
     public bool IsAtk;
     public bool IsActive;
+    public bool isDamage; //padrão FALSE
 
-    public bool isDamage; //
+    [Space(10)]
 
-    [Header ("----------------------------------")]
     [System.NonSerialized] public Rigidbody2D pulo;
     [System.NonSerialized] public Animator AnimacoesPlayer;
-    
-    [Header ("Controle")]
+
+    [Header("Controle")]
     public Joystick joystick;
     public GameController gc;
 
-    [Header ("Objetos para spawn")]
-    public GameObject WaterBullet, smoke;
+    [Space(10)]
+
+    [Header("Objetos para spawn")]
+    public GameObject WaterBullet;
+    public GameObject smoke;
+
+    [Space(10)]
 
     public Transform SpawnPosition;
+    public float cont = 0.5f;
 
-    public float cont = 0.5f;//
 
     private void Start()
     {
-        //sound = GetComponent<AudioSource>();
-
         gc = GameObject.Find("GameController").GetComponent<GameController>();
         pulo = GetComponent<Rigidbody2D>();
         AnimacoesPlayer = GetComponent<Animator>();
@@ -49,10 +52,7 @@ public class PlayerMove : MonoBehaviour
             AnimStatePlayer();
         }
 
-        else
-        {
-            AnimacoesPlayer.Play("DeadPlayer");
-        }
+        else { AnimacoesPlayer.Play("DeadPlayer"); }
     }
 
     public void MovePlayer()
@@ -73,10 +73,7 @@ public class PlayerMove : MonoBehaviour
             transform.eulerAngles = new Vector3(0f, 0f, 0f); 
         }
 
-        else 
-        {
-            IsActive = false; //parado
-        }
+        else { IsActive = false; } //parado
     }
 
     public void JumpPlayer()
@@ -131,47 +128,10 @@ public class PlayerMove : MonoBehaviour
             if (cont < 0) { isDamage = false; }
         }
     }
-
-    /*
-    public void AnimStatePlayer ()
-    {
-        if (IsAtk) //se player estiver atacando // animação de ataque
-        {
-            //primeira condição pois caso o player NÃO esteja atacando
-            // as outras animações poderão ser chamadas normalmente
-            AnimacoesPlayer.Play("AtirarPlayer");
-        }
-
-        else //senão estiver atacando
-        {
-            if (!isJumping) // e se estiver no chão (groundCheck colidindo com o chão / player NÃO estiver pulando)
-            {
-                if (IsActive) //se o player estiver caminhando (em movimentação)
-                {
-                    AnimacoesPlayer.Play("WalkPlayer");
-                }
-
-                else //SE NÃO ESTIVER CAMINHANDO -- isActive no false -- gato parado
-                {
-                    AnimacoesPlayer.Play("IdlePlayer");
-                }
-            }
-
-            else if (isJumping == true) //se NÃO estiver no chão -- isJumping TRUE -- animação de PULAR
-            {
-                AnimacoesPlayer.Play("JumpPlayer");
-            }
-
-        }
-    }*/
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Inimigo")
-        {
-            isDamage = true;
-            cont = 0.5f;
-        }
+        if (collision.gameObject.tag == "Inimigo"){ isDamage = true; cont = 0.5f; }
     }
 
     public void Atirar()

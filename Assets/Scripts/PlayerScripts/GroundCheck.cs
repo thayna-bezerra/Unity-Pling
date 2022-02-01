@@ -14,13 +14,6 @@ public class GroundCheck : MonoBehaviour
         {
             player.isJumping = false; //quando o groundcheck do player colide com o chão
             Instantiate (smoke, transform.position, transform.rotation); //spawn da fumaça quando o player volta para o chão
-
-            /*if (player.isJumping == true)
-            {
-
-            }*/
-            //pegar o valor e a velocidade da função do pulo e subtrair à posição da sombra
-            //quando a variavel isJumping for verdadeira a sombra tem que permanecer colidindo com o ground
         }
     }
 }

@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Chefao : MonoBehaviour
 {
-    //Controle de Movimentação
+    [Header("Controle de Movimentação")]
     public float speed = 3;
     public bool dir = false;
     public float limitScreen = 1.5f;
 
-    //Controle dos spawms
+    [Space(10)]
+
+    [Header("Controle de Spawns")]
     public GameObject tiro; //enemy sendo spawnado
     public Transform spawnPosition;
     public float delaySpawn = 1, minDelay = 1, maxDelay = 5;
 
+    [Space(10)]
+
+    [Header("Controle de Morte")]
     //controle de morte
     public Rigidbody2D rb2d;
     ChefaoStatus chefaoStatus;
@@ -22,13 +27,11 @@ public class Chefao : MonoBehaviour
 
     public Animator animBoss;
 
+    [Space(10)]
+
     public bool isDamage = false;
     public bool isActive = false;
     public float cont = 0.2f;
-
-    //var para entrada chefao
-    //public bool startChefao = true;
-
 
     private void Start()
     {
@@ -39,18 +42,13 @@ public class Chefao : MonoBehaviour
         animBoss = GetComponent<Animator>();
         isActive = true;
         //chefao sem interação com a gravidade
-        //rb2d.bodyType = RigidbodyType2D.Kinematic;
     }
 
      void Update()
      {
          if(chefaoStatus.currentLife > 0)
          {
-             if(transform.position.y == 7)
-             {
-                 rb2d.bodyType = RigidbodyType2D.Dynamic;
-                 //rb2d.gravityScale = -0.4f;
-             }
+             if(transform.position.y == 7) { rb2d.bodyType = RigidbodyType2D.Dynamic; }
 
              else if (transform.position.y <= 2.26)
              {
@@ -77,10 +75,7 @@ public class Chefao : MonoBehaviour
 
     void AnimStateBoss()
     {
-        if (isActive == true)
-        {
-            animBoss.Play("Boss");
-        }
+        if (isActive == true) { animBoss.Play("Boss"); }
 
         else if (isDamage == true)
         {
@@ -93,15 +88,9 @@ public class Chefao : MonoBehaviour
 
     void HorinzontalMove()
     {
+        if(!dir) { transform.position += new Vector3(speed, 0, 0) * Time.deltaTime; }
 
-        if(!dir)
-        {
-            transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
-        }
-        else
-        {
-             transform.position -= new Vector3(speed, 0, 0) * Time.deltaTime;
-        }
+        else { transform.position -= new Vector3(speed, 0, 0) * Time.deltaTime; }
 
         //mudar dir de acordo com o limite de tela
         if (transform.position.x < -limitScreen) dir = false;
@@ -110,10 +99,7 @@ public class Chefao : MonoBehaviour
 
     void SpawnTiros()
     {
-        if (delaySpawn > 0)
-        {
-            delaySpawn -= Time.deltaTime;
-        }
+        if (delaySpawn > 0) { delaySpawn -= Time.deltaTime; }
 
         else if (delaySpawn <= 0)
         {
